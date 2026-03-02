@@ -183,6 +183,7 @@ class BackendTester:
         self.test_products_sorting()
         self.test_other_endpoints()
         self.test_contact_form()
+        self.test_configurator()
         
         # Print summary
         print(f"\n📊 Test Summary:")
