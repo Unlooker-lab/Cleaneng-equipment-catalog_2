@@ -1,0 +1,145 @@
+{
+  "typography": {
+    "font_family": {
+      "headings": "system-ui, -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Oxygen, Ubuntu, Cantarell, 'Open Sans', 'Helvetica Neue', sans-serif",
+      "body": "system-ui, -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Oxygen, Ubuntu, Cantarell, 'Open Sans', 'Helvetica Neue', sans-serif",
+      "mono": "ui-monospace, SFMono-Regular, Menlo, Monaco, Consolas, 'Liberation Mono', 'Courier New', monospace"
+    },
+    "scale": {
+      "h1": "text-4xl font-bold tracking-tight lg:text-5xl",
+      "h2": "text-3xl font-bold tracking-tight",
+      "h3": "text-2xl font-semibold tracking-tight",
+      "body": "text-base leading-relaxed",
+      "small": "text-sm font-medium leading-none"
+    }
+  },
+  "colors": {
+    "primary": {
+      "DEFAULT": "#1D5EBC",
+      "foreground": "#FFFFFF",
+      "hover": "#164B96",
+      "active": "#113A75"
+    },
+    "secondary": {
+      "DEFAULT": "#F1F5F9",
+      "foreground": "#0F172A"
+    },
+    "accent": {
+      "DEFAULT": "#F8FAFC",
+      "foreground": "#1D5EBC"
+    },
+    "background": {
+      "DEFAULT": "#FFFFFF",
+      "subtle": "#F8FAFC",
+      "dark": "#0F172A"
+    },
+    "text": {
+      "primary": "#0F172A",
+      "secondary": "#64748B",
+      "muted": "#94A3B8"
+    },
+    "border": {
+      "DEFAULT": "#E2E8F0",
+      "focus": "#1D5EBC"
+    },
+    "status": {
+      "success": "#10B981",
+      "warning": "#F59E0B",
+      "error": "#EF4444"
+    }
+  },
+  "layout": {
+    "container": "container mx-auto px-4 md:px-6 lg:px-8 max-w-7xl",
+    "section_spacing": "py-12 md:py-16 lg:py-24",
+    "grid_gap": "gap-6 md:gap-8",
+    "sidebar_width": "w-full lg:w-72 shrink-0"
+  },
+  "components": {
+    "buttons": {
+      "primary": "bg-[#1D5EBC] hover:bg-[#164B96] text-white font-medium rounded-md px-6 py-2 transition-all shadow-sm hover:shadow-md",
+      "secondary": "bg-white border border-gray-200 text-gray-900 hover:bg-gray-50 font-medium rounded-md px-6 py-2 transition-all",
+      "outline": "border-2 border-[#1D5EBC] text-[#1D5EBC] hover:bg-[#1D5EBC] hover:text-white font-medium rounded-md px-6 py-2 transition-all"
+    },
+    "cards": {
+      "product": "group relative bg-white border border-gray-200 rounded-lg overflow-hidden hover:shadow-lg transition-all duration-300 hover:border-[#1D5EBC]/30",
+      "feature": "bg-slate-50 border border-slate-100 rounded-xl p-6 hover:bg-white hover:shadow-md transition-all"
+    },
+    "inputs": {
+      "default": "flex h-10 w-full rounded-md border border-input bg-background px-3 py-2 text-sm ring-offset-background file:border-0 file:bg-transparent file:text-sm file:font-medium placeholder:text-muted-foreground focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-[#1D5EBC] focus-visible:ring-offset-2 disabled:cursor-not-allowed disabled:opacity-50"
+    }
+  },
+  "image_urls": {
+    "hero_background": "https://images.unsplash.com/photo-1769695832195-dfe7e9f36980?crop=entropy&cs=srgb&fm=jpg&ixid=M3w4NjA1NDh8MHwxfHNlYXJjaHwyfHxoaWdoJTIwcHJlc3N1cmUlMjB3YXRlciUyMHB1bXAlMjBpbmR1c3RyaWFsfGVufDB8fHx8MTc3MjQzMzExNHww&ixlib=rb-4.1.0&q=85",
+    "products": [
+      {
+        "category": "High Pressure Pumps",
+        "url": "https://images.unsplash.com/photo-1603577892375-f05581d44e29?crop=entropy&cs=srgb&fm=jpg&ixid=M3w4NjA1NDh8MHwxfHNlYXJjaHwxfHxoaWdoJTIwcHJlc3N1cmUlMjB3YXRlciUyMHB1bXAlMjBpbmR1c3RyaWFsfGVufDB8fHx8MTc3MjQzMzExNHww&ixlib=rb-4.1.0&q=85",
+        "alt": "High Pressure Pump"
+      },
+      {
+        "category": "Pressure Washers",
+        "url": "https://images.unsplash.com/photo-1740362381367-09cb98b4e1c6?crop=entropy&cs=srgb&fm=jpg&ixid=M3w4NTYxOTB8MHwxfHNlYXJjaHwzfHxpbmR1c3RyaWFsJTIwcHJlc3N1cmUlMjB3YXNoZXIlMjBjYXIlMjB3YXNoJTIwZXF1aXBtZW50JTIwcHJvZmVzc2lvbmFsfGVufDB8fHx8MTc3MjQzMzExM3ww&ixlib=rb-4.1.0&q=85",
+        "alt": "Professional Pressure Washer"
+      },
+      {
+        "category": "Accessories",
+        "url": "https://images.unsplash.com/photo-1615746361842-33eaad7d1263?crop=entropy&cs=srgb&fm=jpg&ixid=M3w3NDQ2NDN8MHwxfHNlYXJjaHwyfHxoaWdoJTIwcHJlc3N1cmUlMjB3YXNoZXIlMjBndW4lMjBhY2Nlc3Nvcnl8ZW58MHx8fHwxNzcyNDMzMTI5fDA&ixlib=rb-4.1.0&q=85",
+        "alt": "Washer Gun"
+      }
+    ],
+    "logos": {
+      "AVDIRVD": "https://customer-assets.emergentagent.com/job_washtech-solutions/artifacts/y2cyxval_Logo_new_AVDIRVD_2.jpeg",
+      "placeholders": [
+        "https://placehold.co/200x80/white/1D5EBC?text=TOR",
+        "https://placehold.co/200x80/white/1D5EBC?text=Annovi+Reverberi",
+        "https://placehold.co/200x80/white/1D5EBC?text=HAWK",
+        "https://placehold.co/200x80/white/1D5EBC?text=RM+Suttner",
+        "https://placehold.co/200x80/white/1D5EBC?text=Christ+AG"
+      ]
+    }
+  },
+  "content_strategy": {
+    "language": "ru",
+    "currency": "Br",
+    "categories": [
+      "Аппараты высокого давления",
+      "Пеногенераторы и пенокомплекты",
+      "Насосы и фильтры",
+      "Генераторы горячей воды",
+      "Пылесосы и химчистка",
+      "Аксессуары и комплектующие",
+      "Автохимия"
+    ],
+    "filters": {
+      "price_label": "Цена",
+      "pressure_label": "Давление (бар)",
+      "flow_label": "Поток (л/мин)",
+      "brand_label": "Бренд"
+    },
+    "nav_items": ["Главная", "Каталог", "О нас", "Контакты", "Доставка"],
+    "contact_info": {
+      "phone": "+375 (29) 123-45-67",
+      "email": "info@avdirvd.by",
+      "address": "Минск, ул. Промышленная 1"
+    }
+  },
+  "instructions_to_main_agent": [
+    "USE THE PROVIDED IMAGE URLS. Do not use placeholders for products or hero images.",
+    "Implement the 'Technical Grid' layout: Dense, information-rich product cards with visible specs (Bar, L/min).",
+    "The sidebar must be sticky on desktop.",
+    "Use the color #1D5EBC for all primary actions and active states.",
+    "Ensure all text is in Russian as provided in the content_strategy.",
+    "The 'View Mode' (Grid/List/Compact) must be functional state that changes the layout of the product grid.",
+    "Use Lucide-React icons for all UI elements (shopping-cart, search, menu, phone, filter, grid, list).",
+    "Do not use gradients. Stick to solid white backgrounds and subtle gray borders for a professional B2B look.",
+    "For the 'Partners' section, use the generated placeholder URLs if actual logos are not available, but style them cleanly in a grayscale grid that lights up on hover."
+  ],
+  "universal_guidelines": [
+    "Do not apply 'transition: all'. Use specific transitions.",
+    "Do not center align the app container.",
+    "Ensure high contrast for text (Slate 900 on White).",
+    "Use 'sonner' for toasts.",
+    "All interactive elements must have data-testid attributes.",
+    "Do not use transparent backgrounds for dropdowns or modals."
+  ]
+}
