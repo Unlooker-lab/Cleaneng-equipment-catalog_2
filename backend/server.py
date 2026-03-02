@@ -31,6 +31,12 @@ class ContactForm(BaseModel):
     message: str = ""
 
 
+class ConfiguratorSubmission(BaseModel):
+    config: dict
+    contact: dict
+    estimate: Optional[dict] = None
+
+
 SEED_CATEGORIES = [
     {"id": "cat-1", "name": "Оборудование", "slug": "equipment", "parent_id": None, "icon": "Wrench", "count": 6},
     {"id": "cat-1-1", "name": "Аппараты высокого давления", "slug": "high-pressure", "parent_id": "cat-1", "icon": "Gauge", "count": 6},
@@ -369,6 +375,19 @@ async def get_filter_ranges():
             "flows": flows,
         }
     return {"price_min": 0, "price_max": 0, "pressures": [], "flows": []}
+
+
+@api_router.post("/configurator")
+async def submit_configurator(data: ConfiguratorSubmission):
+    doc = {
+        "id": str(uuid.uuid4()),
+        "config": data.config,
+        "contact": data.contact,
+        "estimate": data.estimate,
+        "created_at": datetime.now(timezone.utc).isoformat(),
+    }
+    await db.configurator_submissions.insert_one(doc)
+    return {"success": True, "message": "Заявка на расчёт принята", "estimate": data.estimate}
 
 
 @api_router.post("/contact")

@@ -7,6 +7,7 @@ import Sidebar from "@/components/Sidebar";
 import ProductCard from "@/components/ProductCard";
 import ContactForm from "@/components/ContactForm";
 import Footer from "@/components/Footer";
+import Configurator from "@/components/Configurator";
 
 const API = `${process.env.REACT_APP_BACKEND_URL}/api`;
 
@@ -318,6 +319,11 @@ export default function App() {
           </div>
 
           <NewArrivals products={newProducts} />
+        </div>
+
+        <Configurator />
+
+        <div className="max-w-7xl mx-auto px-4 md:px-6 lg:px-8">
           <Partners />
         </div>
       </main>
