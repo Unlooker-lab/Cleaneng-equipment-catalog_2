@@ -139,6 +139,37 @@ class BackendTester:
         success, details = self.test_api_endpoint("contact", method="POST", data=contact_data)
         self.log_test("POST /api/contact", success, details)
 
+    def test_configurator(self) -> None:
+        """Test configurator submission endpoint"""
+        print("\n⚙️ Testing Configurator...")
+        
+        configurator_data = {
+            "config": {
+                "washType": "car",
+                "postCount": 2,
+                "equipType": "manual",
+                "chemType": "foam",
+                "extras": ["softener", "osmosis"],
+                "services": ["tz", "design"]
+            },
+            "contact": {
+                "name": "Test Configurator User",
+                "phone": "+375291234567",
+                "email": "configurator@test.com"
+            },
+            "estimate": {
+                "equipCost": 6475,
+                "chemCost": 1300,
+                "extraCost": 5000,
+                "serviceCost": 2800,
+                "total": 15575,
+                "posts": 2
+            }
+        }
+        
+        success, details = self.test_api_endpoint("configurator", method="POST", data=configurator_data)
+        self.log_test("POST /api/configurator", success, details)
+
     def run_all_tests(self) -> Dict[str, Any]:
         """Run all backend tests"""
         print("🚀 Starting Backend API Tests...")
