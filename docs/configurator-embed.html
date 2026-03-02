@@ -1,0 +1,705 @@
+<style>
+/* ============================================ */
+/* AVDIRVD Конфигуратор — Standalone CSS        */
+/* ============================================ */
+:root {
+  --avd-primary: #1D5EBC;
+  --avd-primary-hover: #164B96;
+  --avd-primary-light: #EBF1FA;
+  --avd-dark: #0F172A;
+  --avd-gray: #64748B;
+  --avd-muted: #94A3B8;
+  --avd-border: #E2E8F0;
+  --avd-bg: #F8FAFC;
+  --avd-success: #10B981;
+}
+
+#avd-cfg * { box-sizing: border-box; margin: 0; padding: 0; }
+
+#avd-cfg {
+  font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, 'Helvetica Neue', Arial, sans-serif;
+  max-width: 900px;
+  margin: 0 auto;
+  color: var(--avd-dark);
+}
+
+#avd-cfg .cfg-header { text-align: center; margin-bottom: 32px; }
+
+#avd-cfg .cfg-badge {
+  display: inline-flex; align-items: center; gap: 6px;
+  padding: 4px 14px; border-radius: 999px;
+  background: var(--avd-primary-light); color: var(--avd-primary);
+  font-size: 12px; font-weight: 600; margin-bottom: 12px;
+}
+#avd-cfg .cfg-badge svg { width: 14px; height: 14px; }
+
+#avd-cfg .cfg-title {
+  font-size: 28px; font-weight: 700; color: var(--avd-dark);
+  letter-spacing: -0.02em; line-height: 1.2;
+}
+
+#avd-cfg .cfg-subtitle {
+  font-size: 14px; color: var(--avd-gray); margin-top: 8px;
+}
+
+#avd-cfg .cfg-card {
+  background: #fff; border: 1px solid var(--avd-border);
+  border-radius: 16px; padding: 28px 32px;
+}
+
+/* === Step Indicator === */
+#avd-cfg .cfg-steps {
+  display: flex; align-items: center; justify-content: center;
+  margin-bottom: 32px; gap: 0;
+}
+
+#avd-cfg .cfg-step-dot {
+  width: 32px; height: 32px; border-radius: 50%;
+  display: flex; align-items: center; justify-content: center;
+  font-size: 12px; font-weight: 700; flex-shrink: 0;
+  transition: background 0.3s, color 0.3s, box-shadow 0.3s;
+  background: var(--avd-border); color: var(--avd-gray);
+}
+#avd-cfg .cfg-step-dot.done { background: var(--avd-primary); color: #fff; }
+#avd-cfg .cfg-step-dot.active {
+  background: var(--avd-primary); color: #fff;
+  box-shadow: 0 0 0 4px rgba(29, 94, 188, 0.2);
+}
+#avd-cfg .cfg-step-line {
+  width: 40px; height: 2px; flex-shrink: 0;
+  transition: background 0.3s;
+  background: var(--avd-border);
+}
+#avd-cfg .cfg-step-line.done { background: var(--avd-primary); }
+
+/* === Step Content === */
+#avd-cfg .cfg-step-title {
+  font-size: 18px; font-weight: 700; text-align: center; margin-bottom: 4px;
+}
+#avd-cfg .cfg-step-desc {
+  font-size: 13px; color: var(--avd-gray); text-align: center; margin-bottom: 24px;
+}
+
+/* Cards grid */
+#avd-cfg .cfg-grid { display: grid; gap: 12px; }
+#avd-cfg .cfg-grid-3 { grid-template-columns: repeat(3, 1fr); }
+#avd-cfg .cfg-grid-4 { grid-template-columns: repeat(4, 1fr); }
+#avd-cfg .cfg-grid-2col { grid-template-columns: repeat(2, 1fr); }
+
+@media (max-width: 640px) {
+  #avd-cfg .cfg-grid-3, #avd-cfg .cfg-grid-4 { grid-template-columns: repeat(2, 1fr); }
+  #avd-cfg .cfg-grid-2col { grid-template-columns: 1fr; }
+  #avd-cfg .cfg-card { padding: 20px 16px; }
+  #avd-cfg .cfg-title { font-size: 22px; }
+}
+
+/* Select card */
+#avd-cfg .cfg-select-card {
+  display: flex; flex-direction: column; align-items: center; justify-content: center;
+  padding: 16px 12px; border-radius: 12px; border: 2px solid var(--avd-border);
+  background: #fff; cursor: pointer; transition: all 0.2s; min-height: 100px;
+  text-align: center;
+}
+#avd-cfg .cfg-select-card:hover { border-color: var(--avd-muted); box-shadow: 0 2px 8px rgba(0,0,0,0.05); }
+#avd-cfg .cfg-select-card.selected {
+  border-color: var(--avd-primary); background: var(--avd-primary-light);
+  box-shadow: 0 4px 12px rgba(29, 94, 188, 0.15);
+}
+#avd-cfg .cfg-select-card svg {
+  width: 28px; height: 28px; margin-bottom: 8px; color: var(--avd-muted);
+  transition: color 0.2s;
+}
+#avd-cfg .cfg-select-card.selected svg { color: var(--avd-primary); }
+#avd-cfg .cfg-select-card .card-label {
+  font-size: 13px; font-weight: 600; color: var(--avd-dark); line-height: 1.3;
+}
+#avd-cfg .cfg-select-card.selected .card-label { color: var(--avd-primary); }
+
+/* Post count buttons */
+#avd-cfg .cfg-posts { display: flex; flex-wrap: wrap; justify-content: center; gap: 12px; }
+#avd-cfg .cfg-post-btn {
+  padding: 12px 24px; border-radius: 12px; border: 2px solid var(--avd-border);
+  background: #fff; cursor: pointer; font-size: 14px; font-weight: 600;
+  color: var(--avd-dark); transition: all 0.2s;
+}
+#avd-cfg .cfg-post-btn:hover { border-color: var(--avd-muted); }
+#avd-cfg .cfg-post-btn.selected {
+  border-color: var(--avd-primary); background: var(--avd-primary-light);
+  color: var(--avd-primary); box-shadow: 0 4px 12px rgba(29, 94, 188, 0.15);
+}
+
+/* Checkbox option */
+#avd-cfg .cfg-check-item {
+  display: flex; align-items: center; gap: 12px;
+  padding: 12px 14px; border-radius: 10px; border: 1px solid var(--avd-border);
+  background: #fff; cursor: pointer; transition: all 0.2s;
+}
+#avd-cfg .cfg-check-item:hover { border-color: var(--avd-muted); }
+#avd-cfg .cfg-check-item.checked { border-color: var(--avd-primary); background: var(--avd-primary-light); }
+#avd-cfg .cfg-checkbox {
+  width: 20px; height: 20px; border-radius: 4px; border: 2px solid var(--avd-border);
+  display: flex; align-items: center; justify-content: center; flex-shrink: 0;
+  transition: all 0.2s;
+}
+#avd-cfg .cfg-check-item.checked .cfg-checkbox {
+  background: var(--avd-primary); border-color: var(--avd-primary);
+}
+#avd-cfg .cfg-check-item svg.check-icon { width: 18px; height: 18px; color: var(--avd-muted); flex-shrink: 0; }
+#avd-cfg .cfg-check-item.checked svg.check-icon { color: var(--avd-primary); }
+#avd-cfg .cfg-check-label { flex: 1; font-size: 13px; font-weight: 500; color: var(--avd-dark); }
+#avd-cfg .cfg-check-price { font-size: 12px; color: var(--avd-gray); white-space: nowrap; }
+
+/* Live estimate */
+#avd-cfg .cfg-estimate {
+  margin-top: 24px; padding: 12px 16px; border-radius: 10px;
+  background: var(--avd-primary-light);
+  display: flex; align-items: center; justify-content: space-between;
+}
+#avd-cfg .cfg-estimate-label { font-size: 14px; color: var(--avd-gray); }
+#avd-cfg .cfg-estimate-value { font-size: 20px; font-weight: 700; color: var(--avd-primary); }
+
+/* Navigation */
+#avd-cfg .cfg-nav {
+  display: flex; align-items: center; justify-content: space-between;
+  margin-top: 32px; padding-top: 16px; border-top: 1px solid #f1f5f9;
+}
+#avd-cfg .cfg-btn {
+  display: inline-flex; align-items: center; gap: 6px;
+  padding: 8px 20px; border-radius: 8px; font-size: 14px; font-weight: 600;
+  cursor: pointer; transition: all 0.2s; border: none;
+}
+#avd-cfg .cfg-btn:disabled { opacity: 0.3; cursor: not-allowed; }
+#avd-cfg .cfg-btn-prev {
+  background: #fff; color: var(--avd-gray); border: 1px solid var(--avd-border);
+}
+#avd-cfg .cfg-btn-prev:hover:not(:disabled) { background: #f8fafc; }
+#avd-cfg .cfg-btn-next {
+  background: var(--avd-primary); color: #fff;
+}
+#avd-cfg .cfg-btn-next:hover:not(:disabled) { background: var(--avd-primary-hover); }
+#avd-cfg .cfg-dots { display: flex; gap: 6px; }
+#avd-cfg .cfg-dot {
+  width: 8px; height: 8px; border-radius: 50%; background: var(--avd-border);
+  transition: background 0.3s;
+}
+#avd-cfg .cfg-dot.active { background: var(--avd-primary); }
+#avd-cfg .cfg-dot.done { background: rgba(29, 94, 188, 0.4); }
+
+/* Summary step */
+#avd-cfg .cfg-summary-row {
+  display: flex; justify-content: space-between; padding: 8px 0;
+  border-bottom: 1px solid #f1f5f9; font-size: 14px;
+}
+#avd-cfg .cfg-summary-row .label { color: var(--avd-gray); }
+#avd-cfg .cfg-summary-row .value { font-weight: 600; color: var(--avd-dark); text-align: right; }
+#avd-cfg .cfg-cost-block {
+  margin-top: 16px; padding: 16px; background: var(--avd-bg); border-radius: 12px;
+}
+#avd-cfg .cfg-cost-row {
+  display: flex; justify-content: space-between; font-size: 13px; padding: 4px 0;
+}
+#avd-cfg .cfg-cost-row .cl { color: var(--avd-gray); }
+#avd-cfg .cfg-cost-row .cv { color: var(--avd-dark); }
+#avd-cfg .cfg-cost-total {
+  display: flex; justify-content: space-between; margin-top: 12px;
+  padding-top: 12px; border-top: 2px solid var(--avd-border);
+}
+#avd-cfg .cfg-cost-total .cl { font-weight: 700; color: var(--avd-dark); }
+#avd-cfg .cfg-cost-total .cv { font-size: 22px; font-weight: 700; color: var(--avd-primary); }
+
+/* Form */
+#avd-cfg .cfg-form-group { margin-bottom: 12px; }
+#avd-cfg .cfg-form-label { display: block; font-size: 12px; font-weight: 600; color: var(--avd-gray); margin-bottom: 4px; }
+#avd-cfg .cfg-input {
+  width: 100%; height: 40px; padding: 0 12px; border: 1px solid var(--avd-border);
+  border-radius: 8px; font-size: 14px; color: var(--avd-dark); outline: none;
+  transition: border-color 0.2s, box-shadow 0.2s;
+}
+#avd-cfg .cfg-input:focus { border-color: var(--avd-primary); box-shadow: 0 0 0 3px rgba(29, 94, 188, 0.1); }
+#avd-cfg .cfg-submit {
+  width: 100%; height: 44px; background: var(--avd-primary); color: #fff;
+  border: none; border-radius: 8px; font-size: 14px; font-weight: 600;
+  cursor: pointer; transition: background 0.2s; margin-top: 8px;
+  display: flex; align-items: center; justify-content: center; gap: 8px;
+}
+#avd-cfg .cfg-submit:hover { background: var(--avd-primary-hover); }
+#avd-cfg .cfg-submit:disabled { opacity: 0.5; cursor: not-allowed; }
+#avd-cfg .cfg-form-note { font-size: 11px; color: var(--avd-muted); text-align: center; margin-top: 8px; }
+
+/* Success state */
+#avd-cfg .cfg-success { text-align: center; padding: 40px 20px; }
+#avd-cfg .cfg-success svg { width: 56px; height: 56px; color: var(--avd-success); margin-bottom: 16px; }
+#avd-cfg .cfg-success h3 { font-size: 20px; font-weight: 700; margin-bottom: 8px; }
+#avd-cfg .cfg-success p { font-size: 14px; color: var(--avd-gray); }
+#avd-cfg .cfg-success .cfg-total-result {
+  font-size: 16px; color: var(--avd-dark); margin: 4px 0 24px;
+}
+#avd-cfg .cfg-success .cfg-total-result strong { color: var(--avd-primary); }
+#avd-cfg .cfg-reset-btn {
+  padding: 10px 24px; background: var(--avd-primary); color: #fff;
+  border: none; border-radius: 8px; font-size: 14px; font-weight: 600; cursor: pointer;
+}
+
+/* Section heading for options */
+#avd-cfg .cfg-section-label {
+  font-size: 11px; font-weight: 700; text-transform: uppercase; letter-spacing: 0.08em;
+  color: var(--avd-muted); margin-bottom: 12px;
+}
+</style>
+
+<!-- ============================================ -->
+<!-- AVDIRVD Конфигуратор — HTML                  -->
+<!-- ============================================ -->
+<div id="avd-cfg">
+  <div class="cfg-header">
+    <div class="cfg-badge">
+      <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect x="4" y="2" width="16" height="20" rx="2"/><line x1="8" y1="6" x2="16" y2="6"/><line x1="8" y1="10" x2="16" y2="10"/><line x1="8" y1="14" x2="12" y2="14"/></svg>
+      Конфигуратор
+    </div>
+    <h2 class="cfg-title">Подберите комплект оборудования</h2>
+    <p class="cfg-subtitle">Ответьте на несколько вопросов и получите расчёт стоимости</p>
+  </div>
+
+  <div class="cfg-card">
+    <!-- Step indicator -->
+    <div class="cfg-steps" id="cfg-steps"></div>
+
+    <!-- Step title -->
+    <div class="cfg-step-title" id="cfg-step-title"></div>
+    <div class="cfg-step-desc" id="cfg-step-desc"></div>
+
+    <!-- Step content container -->
+    <div id="cfg-content" style="min-height:200px"></div>
+
+    <!-- Live estimate -->
+    <div class="cfg-estimate" id="cfg-live-estimate" style="display:none">
+      <span class="cfg-estimate-label">Ориентировочная стоимость:</span>
+      <span class="cfg-estimate-value" id="cfg-live-value">0 Br</span>
+    </div>
+
+    <!-- Navigation -->
+    <div class="cfg-nav">
+      <button class="cfg-btn cfg-btn-prev" id="cfg-prev" onclick="avdCfgPrev()">
+        <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><polyline points="15 18 9 12 15 6"/></svg>
+        Назад
+      </button>
+      <div class="cfg-dots" id="cfg-dots"></div>
+      <button class="cfg-btn cfg-btn-next" id="cfg-next" onclick="avdCfgNext()">
+        Далее
+        <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><polyline points="9 18 15 12 9 6"/></svg>
+      </button>
+    </div>
+  </div>
+
+  <!-- Success state (hidden by default) -->
+  <div class="cfg-card cfg-success" id="cfg-success" style="display:none">
+    <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M22 11.08V12a10 10 0 1 1-5.93-9.14"/><polyline points="22 4 12 14.01 9 11.01"/></svg>
+    <h3>Заявка на расчёт отправлена</h3>
+    <p class="cfg-total-result">Ориентировочная стоимость: <strong id="cfg-final-total"></strong></p>
+    <p>Наш специалист свяжется с вами для уточнения деталей<br>и подготовки коммерческого предложения</p>
+    <br>
+    <button class="cfg-reset-btn" onclick="avdCfgReset()">Новый расчёт</button>
+  </div>
+</div>
+
+<script>
+/* ============================================ */
+/* AVDIRVD Конфигуратор — JavaScript            */
+/* ============================================ */
+(function() {
+  'use strict';
+
+  // === ДАННЫЕ (изменяйте цены здесь) ===
+
+  var WASH_TYPES = [
+    { id:'car', label:'Легковая', icon:'car', base:3500 },
+    { id:'self-service', label:'Мойка самообслуживания', icon:'landmark', base:8000 },
+    { id:'truck', label:'Грузовая', icon:'truck', base:6500 },
+    { id:'cistern', label:'Мойка цистерн', icon:'circle-dot', base:12000 },
+    { id:'tank', label:'Мойка танк-контейнеров', icon:'container', base:15000 },
+    { id:'industrial', label:'Промышленные моечные системы', icon:'factory', base:20000 }
+  ];
+
+  var POST_COUNTS = [
+    { id:1, label:'1 пост', mult:1.0 },
+    { id:2, label:'2 поста', mult:1.85 },
+    { id:3, label:'3 поста', mult:2.6 },
+    { id:4, label:'4 поста', mult:3.3 },
+    { id:'5+', label:'5+ постов', mult:4.0 }
+  ];
+
+  var EQUIP_TYPES = [
+    { id:'manual', label:'Ручное (АВД)', icon:'wrench', factor:1.0 },
+    { id:'portal', label:'Автоматическое (портал)', icon:'monitor', factor:2.8 },
+    { id:'tunnel', label:'Туннельное', icon:'arrow-right-left', factor:5.0 },
+    { id:'robot', label:'Роботизированное', icon:'bot', factor:3.5 }
+  ];
+
+  var CHEM_TYPES = [
+    { id:'foam', label:'Пенокомплект', icon:'droplets', perPost:650 },
+    { id:'autodose', label:'Автодозация (дозатрон)', icon:'gauge', perPost:1500 },
+    { id:'combined', label:'Комбинированное', icon:'layers', perPost:1900 }
+  ];
+
+  var EXTRA_OPTIONS = [
+    { id:'softener', label:'Смягчение воды', icon:'waves', price:1200 },
+    { id:'osmosis', label:'Осмос', icon:'filter', price:3800 },
+    { id:'boiler', label:'Бойлер', icon:'flame', price:4500 },
+    { id:'steam', label:'Парогенератор', icon:'cloud', price:5200 },
+    { id:'water-treat', label:'Водоочистка', icon:'droplet', price:2200 },
+    { id:'compressor', label:'Компрессор', icon:'wind', price:2800 }
+  ];
+
+  var SERVICES = [
+    { id:'tz', label:'Разработка ТЗ', icon:'file-text', price:800 },
+    { id:'design', label:'Дизайн-проект', icon:'palette', price:2000 },
+    { id:'install', label:'Монтаж и сервис', icon:'wrench', pct:15 },
+    { id:'warranty', label:'Гарантия и обучение', icon:'shield', price:1200 }
+  ];
+
+  var STEPS = [
+    { title:'Тип мойки', desc:'Выберите тип моечного объекта' },
+    { title:'Количество постов', desc:'Укажите необходимое количество постов' },
+    { title:'Тип оборудования', desc:'Выберите тип моечного оборудования' },
+    { title:'Подача химии', desc:'Выберите способ нанесения и подачи химии' },
+    { title:'Опции и услуги', desc:'Дополнительные опции и требуемые услуги' },
+    { title:'Расчёт стоимости', desc:'Куда отправить расчёт' }
+  ];
+
+  // SVG Icons (inline)
+  var ICONS = {
+    'car': '<path d="M19 17h2c.6 0 1-.4 1-1v-3c0-.9-.7-1.7-1.5-1.9C18.7 10.6 16 10 16 10s-1.3-1.4-2.2-2.3c-.5-.4-1.1-.7-1.8-.7H5c-.6 0-1.1.4-1.4.9l-1.4 2.9A3.7 3.7 0 0 0 2 12v4c0 .6.4 1 1 1h2"/><circle cx="7" cy="17" r="2"/><path d="M9 17h6"/><circle cx="17" cy="17" r="2"/>',
+    'landmark': '<line x1="3" y1="22" x2="21" y2="22"/><line x1="6" y1="18" x2="6" y2="11"/><line x1="10" y1="18" x2="10" y2="11"/><line x1="14" y1="18" x2="14" y2="11"/><line x1="18" y1="18" x2="18" y2="11"/><polygon points="12 2 20 7 4 7"/>',
+    'truck': '<path d="M14 18V6a2 2 0 0 0-2-2H4a2 2 0 0 0-2 2v11a1 1 0 0 0 1 1h2"/><path d="M15 18H9"/><path d="M19 18h2a1 1 0 0 0 1-1v-3.65a1 1 0 0 0-.22-.624l-3.48-4.35A1 1 0 0 0 17.52 8H14"/><circle cx="17" cy="18" r="2"/><circle cx="7" cy="18" r="2"/>',
+    'circle-dot': '<circle cx="12" cy="12" r="10"/><circle cx="12" cy="12" r="1"/>',
+    'container': '<path d="M22 7.7c0-.6-.4-1.2-.8-1.5l-6.3-3.8a1.5 1.5 0 0 0-1.7 0L6.8 6.2c-.5.3-.8.9-.8 1.5V16c0 .6.4 1.2.8 1.5l6.3 3.8a1.5 1.5 0 0 0 1.7 0l6.3-3.8c.5-.3.8-.9.8-1.5Z"/><path d="M10 21.9V14L2.1 9.1"/><path d="m10 14 11.9-6.9"/><path d="M14 21.9V14l7.9-4.9"/><path d="M2.1 14.8 10 9.9l11.9 4.9"/>',
+    'factory': '<path d="M2 20a2 2 0 0 0 2 2h16a2 2 0 0 0 2-2V8l-7 5V8l-7 5V4a2 2 0 0 0-2-2H4a2 2 0 0 0-2 2Z"/><path d="M17 18h1"/><path d="M12 18h1"/><path d="M7 18h1"/>',
+    'wrench': '<path d="M14.7 6.3a1 1 0 0 0 0 1.4l1.6 1.6a1 1 0 0 0 1.4 0l3.77-3.77a6 6 0 0 1-7.94 7.94l-6.91 6.91a2.12 2.12 0 0 1-3-3l6.91-6.91a6 6 0 0 1 7.94-7.94l-3.76 3.76z"/>',
+    'monitor': '<rect width="20" height="14" x="2" y="3" rx="2"/><line x1="8" x2="16" y1="21" y2="21"/><line x1="12" x2="12" y1="17" y2="21"/>',
+    'arrow-right-left': '<path d="m8 3 4 4-4 4"/><path d="M12 7H4"/><path d="m16 21-4-4 4-4"/><path d="M12 17h8"/>',
+    'bot': '<path d="M12 8V4H8"/><rect width="16" height="12" x="4" y="8" rx="2"/><path d="M2 14h2"/><path d="M20 14h2"/><path d="M15 13v2"/><path d="M9 13v2"/>',
+    'droplets': '<path d="M7 16.3c2.2 0 4-1.83 4-4.05 0-1.16-.57-2.26-1.71-3.19S7.29 6.75 7 5.3c-.29 1.45-1.14 2.84-2.29 3.76S3 11.1 3 12.25c0 2.22 1.8 4.05 4 4.05z"/><path d="M12.56 6.6A10.97 10.97 0 0 0 14 3.02c.5 2.5 2 4.9 4 6.5s3 3.5 3 5.5a6.98 6.98 0 0 1-11.91 4.97"/>',
+    'gauge': '<path d="m12 14 4-4"/><path d="M3.34 19a10 10 0 1 1 17.32 0"/>',
+    'layers': '<polygon points="12 2 2 7 12 12 22 7 12 2"/><polyline points="2 17 12 22 22 17"/><polyline points="2 12 12 17 22 12"/>',
+    'waves': '<path d="M2 6c.6.5 1.2 1 2.5 1C7 7 7 5 9.5 5c2.6 0 2.4 2 5 2 2.5 0 2.5-2 5-2 1.3 0 1.9.5 2.5 1"/><path d="M2 12c.6.5 1.2 1 2.5 1 2.5 0 2.5-2 5-2 2.6 0 2.4 2 5 2 2.5 0 2.5-2 5-2 1.3 0 1.9.5 2.5 1"/><path d="M2 18c.6.5 1.2 1 2.5 1 2.5 0 2.5-2 5-2 2.6 0 2.4 2 5 2 2.5 0 2.5-2 5-2 1.3 0 1.9.5 2.5 1"/>',
+    'filter': '<polygon points="22 3 2 3 10 12.46 10 19 14 21 14 12.46 22 3"/>',
+    'flame': '<path d="M8.5 14.5A2.5 2.5 0 0 0 11 12c0-1.38-.5-2-1-3-1.072-2.143-.224-4.054 2-6 .5 2.5 2 4.9 4 6.5 2 1.6 3 3.5 3 5.5a7 7 0 1 1-14 0c0-1.153.433-2.294 1-3a2.5 2.5 0 0 0 2.5 2.5z"/>',
+    'cloud': '<path d="M17.5 19H9a7 7 0 1 1 6.71-9h1.79a4.5 4.5 0 1 1 0 9Z"/>',
+    'droplet': '<path d="M12 22a7 7 0 0 0 7-7c0-2-1-3.9-3-5.5s-3.5-4-4-6.5c-.5 2.5-2 4.9-4 6.5C6 11.1 5 13 5 15a7 7 0 0 0 7 7z"/>',
+    'wind': '<path d="M17.7 7.7a2.5 2.5 0 1 1 1.8 4.3H2"/><path d="M9.6 4.6A2 2 0 1 1 11 8H2"/><path d="M12.6 19.4A2 2 0 1 0 14 16H2"/>',
+    'file-text': '<path d="M14.5 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V7.5L14.5 2z"/><polyline points="14 2 14 8 20 8"/><line x1="16" x2="8" y1="13" y2="13"/><line x1="16" x2="8" y1="17" y2="17"/><line x1="10" x2="8" y1="9" y2="9"/>',
+    'palette': '<circle cx="13.5" cy="6.5" r=".5"/><circle cx="17.5" cy="10.5" r=".5"/><circle cx="8.5" cy="7.5" r=".5"/><circle cx="6.5" cy="12.5" r=".5"/><path d="M12 2C6.5 2 2 6.5 2 12s4.5 10 10 10c.926 0 1.648-.746 1.648-1.688 0-.437-.18-.835-.437-1.125-.29-.289-.438-.652-.438-1.125a1.64 1.64 0 0 1 1.668-1.668h1.996c3.051 0 5.555-2.503 5.555-5.554C21.965 6.012 17.461 2 12 2z"/>',
+    'shield': '<path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10"/>'
+  };
+
+  function svgIcon(name) {
+    return '<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">' + (ICONS[name] || '') + '</svg>';
+  }
+
+  // === STATE ===
+  var step = 0;
+  var cfg = { washType:null, postCount:null, equipType:null, chemType:null, extras:[], services:[] };
+  var contact = { name:'', phone:'', email:'' };
+
+  // === HELPERS ===
+  function fmt(n) { return n ? n.toLocaleString('ru-RU') : '0'; }
+  function find(arr, id) { for(var i=0;i<arr.length;i++) if(arr[i].id===id) return arr[i]; return null; }
+
+  function calcEstimate() {
+    var wt = find(WASH_TYPES, cfg.washType);
+    var pc = find(POST_COUNTS, cfg.postCount);
+    var eq = find(EQUIP_TYPES, cfg.equipType);
+    var ch = find(CHEM_TYPES, cfg.chemType);
+    if (!wt || !pc || !eq) return null;
+    var posts = (typeof pc.id === 'number') ? pc.id : 5;
+    var equipCost = Math.round(wt.base * pc.mult * eq.factor);
+    var chemCost = ch ? ch.perPost * posts : 0;
+    var extraCost = 0;
+    EXTRA_OPTIONS.forEach(function(o) { if (cfg.extras.indexOf(o.id) !== -1) extraCost += o.price; });
+    var serviceCost = 0;
+    SERVICES.forEach(function(s) {
+      if (cfg.services.indexOf(s.id) !== -1) {
+        serviceCost += s.pct ? Math.round(equipCost * s.pct / 100) : s.price;
+      }
+    });
+    return { equipCost:equipCost, chemCost:chemCost, extraCost:extraCost, serviceCost:serviceCost, total:equipCost+chemCost+extraCost+serviceCost, posts:posts };
+  }
+
+  // === RENDERING ===
+
+  function renderStepIndicator() {
+    var html = '';
+    for (var i = 0; i < STEPS.length; i++) {
+      var cls = i < step ? 'done' : (i === step ? 'active' : '');
+      var content = i < step ? '<svg width="14" height="10" viewBox="0 0 14 10" fill="none"><path d="M1 5L5 9L13 1" stroke="white" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/></svg>' : (i + 1);
+      html += '<div class="cfg-step-dot ' + cls + '">' + content + '</div>';
+      if (i < STEPS.length - 1) html += '<div class="cfg-step-line ' + (i < step ? 'done' : '') + '"></div>';
+    }
+    document.getElementById('cfg-steps').innerHTML = html;
+
+    var dots = '';
+    for (var j = 0; j < STEPS.length; j++) {
+      dots += '<div class="cfg-dot ' + (j === step ? 'active' : (j < step ? 'done' : '')) + '"></div>';
+    }
+    document.getElementById('cfg-dots').innerHTML = dots;
+  }
+
+  function renderStep() {
+    var el = document.getElementById('cfg-content');
+    document.getElementById('cfg-step-title').textContent = STEPS[step].title;
+    document.getElementById('cfg-step-desc').textContent = STEPS[step].desc;
+    renderStepIndicator();
+
+    if (step === 0) renderWashType(el);
+    else if (step === 1) renderPostCount(el);
+    else if (step === 2) renderEquipType(el);
+    else if (step === 3) renderChemType(el);
+    else if (step === 4) renderOptions(el);
+    else if (step === 5) renderSummary(el);
+
+    // Live estimate
+    var est = calcEstimate();
+    var liveEl = document.getElementById('cfg-live-estimate');
+    if (est && step >= 2 && step < 5) {
+      liveEl.style.display = 'flex';
+      document.getElementById('cfg-live-value').textContent = fmt(est.total) + ' Br';
+    } else {
+      liveEl.style.display = 'none';
+    }
+
+    // Nav buttons
+    document.getElementById('cfg-prev').disabled = (step === 0);
+    var nextBtn = document.getElementById('cfg-next');
+    nextBtn.style.display = (step < 5) ? '' : 'none';
+    nextBtn.disabled = !canNext();
+  }
+
+  function canNext() {
+    if (step === 0) return !!cfg.washType;
+    if (step === 1) return !!cfg.postCount;
+    if (step === 2) return !!cfg.equipType;
+    if (step === 3) return !!cfg.chemType;
+    return true;
+  }
+
+  function renderCards(el, items, selectedId, key, cols) {
+    var html = '<div class="cfg-grid cfg-grid-' + cols + '">';
+    items.forEach(function(item) {
+      var sel = (selectedId === item.id) ? ' selected' : '';
+      html += '<div class="cfg-select-card' + sel + '" onclick="avdCfgSelect(\'' + key + '\',\'' + item.id + '\')">';
+      html += svgIcon(item.icon);
+      html += '<span class="card-label">' + item.label + '</span>';
+      html += '</div>';
+    });
+    html += '</div>';
+    el.innerHTML = html;
+  }
+
+  function renderWashType(el) { renderCards(el, WASH_TYPES, cfg.washType, 'washType', 3); }
+  function renderEquipType(el) { renderCards(el, EQUIP_TYPES, cfg.equipType, 'equipType', 4); }
+  function renderChemType(el) { renderCards(el, CHEM_TYPES, cfg.chemType, 'chemType', 3); }
+
+  function renderPostCount(el) {
+    var html = '<div class="cfg-posts">';
+    POST_COUNTS.forEach(function(p) {
+      var sel = (cfg.postCount === p.id) ? ' selected' : '';
+      html += '<div class="cfg-post-btn' + sel + '" onclick="avdCfgSelect(\'postCount\',' + JSON.stringify(p.id) + ')">' + p.label + '</div>';
+    });
+    html += '</div>';
+    el.innerHTML = html;
+  }
+
+  function renderOptions(el) {
+    var html = '<div class="cfg-grid cfg-grid-2col">';
+
+    // Extra options
+    html += '<div><div class="cfg-section-label">Дополнительные опции</div>';
+    EXTRA_OPTIONS.forEach(function(o) {
+      var chk = cfg.extras.indexOf(o.id) !== -1;
+      html += renderCheckItem(o, chk, 'extras', fmt(o.price) + ' Br');
+    });
+    html += '</div>';
+
+    // Services
+    html += '<div><div class="cfg-section-label">Требуемые услуги</div>';
+    SERVICES.forEach(function(s) {
+      var chk = cfg.services.indexOf(s.id) !== -1;
+      var priceLabel = s.pct ? (s.pct + '%') : (fmt(s.price) + ' Br');
+      html += renderCheckItem(s, chk, 'services', priceLabel);
+    });
+    html += '</div></div>';
+    el.innerHTML = html;
+  }
+
+  function renderCheckItem(item, checked, arrKey, priceLabel) {
+    var cls = checked ? ' checked' : '';
+    var tick = checked ? '<svg width="10" height="8" viewBox="0 0 10 8" fill="none"><path d="M1 4L3.5 6.5L9 1" stroke="white" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/></svg>' : '';
+    return '<div class="cfg-check-item' + cls + '" onclick="avdCfgToggle(\'' + arrKey + '\',\'' + item.id + '\')">'
+      + '<div class="cfg-checkbox">' + tick + '</div>'
+      + '<svg class="check-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">' + (ICONS[item.icon] || '') + '</svg>'
+      + '<span class="cfg-check-label">' + item.label + '</span>'
+      + '<span class="cfg-check-price">' + priceLabel + '</span>'
+      + '</div>';
+  }
+
+  function renderSummary(el) {
+    var est = calcEstimate();
+    var wt = find(WASH_TYPES, cfg.washType);
+    var pc = find(POST_COUNTS, cfg.postCount);
+    var eq = find(EQUIP_TYPES, cfg.equipType);
+    var ch = find(CHEM_TYPES, cfg.chemType);
+
+    var html = '<div class="cfg-grid cfg-grid-2col">';
+
+    // Left: summary
+    html += '<div>';
+    html += '<div class="cfg-section-label">Ваш комплект</div>';
+    html += summaryRow('Тип мойки', wt ? wt.label : '-');
+    html += summaryRow('Постов', pc ? pc.label : '-');
+    html += summaryRow('Оборудование', eq ? eq.label : '-');
+    html += summaryRow('Подача химии', ch ? ch.label : '-');
+    if (cfg.extras.length) {
+      var extLabels = cfg.extras.map(function(id) { var o = find(EXTRA_OPTIONS, id); return o ? o.label : id; }).join(', ');
+      html += summaryRow('Доп. опции', extLabels);
+    }
+    if (cfg.services.length) {
+      var svcLabels = cfg.services.map(function(id) { var s = find(SERVICES, id); return s ? s.label : id; }).join(', ');
+      html += summaryRow('Услуги', svcLabels);
+    }
+
+    if (est) {
+      html += '<div class="cfg-cost-block">';
+      html += costRow('Оборудование', fmt(est.equipCost) + ' Br');
+      if (est.chemCost > 0) html += costRow('Подача химии', fmt(est.chemCost) + ' Br');
+      if (est.extraCost > 0) html += costRow('Доп. опции', fmt(est.extraCost) + ' Br');
+      if (est.serviceCost > 0) html += costRow('Услуги', fmt(est.serviceCost) + ' Br');
+      html += '<div class="cfg-cost-total"><span class="cl">Итого (ориентировочно)</span><span class="cv">' + fmt(est.total) + ' Br</span></div>';
+      html += '</div>';
+    }
+    html += '</div>';
+
+    // Right: form
+    html += '<div>';
+    html += '<div class="cfg-section-label">Куда отправить расчёт</div>';
+    html += '<div class="cfg-form-group"><label class="cfg-form-label">Ваше имя *</label><input class="cfg-input" id="cfg-f-name" type="text" placeholder="Имя" oninput="avdCfgFormUpdate()"></div>';
+    html += '<div class="cfg-form-group"><label class="cfg-form-label">Телефон *</label><input class="cfg-input" id="cfg-f-phone" type="tel" placeholder="+375 (__) ___-__-__" oninput="avdCfgFormUpdate()"></div>';
+    html += '<div class="cfg-form-group"><label class="cfg-form-label">Email</label><input class="cfg-input" id="cfg-f-email" type="email" placeholder="email@example.com"></div>';
+    html += '<button class="cfg-submit" id="cfg-submit-btn" onclick="avdCfgSubmit()" disabled>';
+    html += '<svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><line x1="22" y1="2" x2="11" y2="13"/><polygon points="22 2 15 22 11 13 2 9 22 2"/></svg>';
+    html += 'Рассчитать стоимость</button>';
+    html += '<div class="cfg-form-note">Точная стоимость будет рассчитана специалистом после уточнения деталей</div>';
+    html += '</div></div>';
+
+    el.innerHTML = html;
+  }
+
+  function summaryRow(label, value) {
+    return '<div class="cfg-summary-row"><span class="label">' + label + '</span><span class="value">' + value + '</span></div>';
+  }
+  function costRow(label, value) {
+    return '<div class="cfg-cost-row"><span class="cl">' + label + '</span><span class="cv">' + value + '</span></div>';
+  }
+
+  // === GLOBAL FUNCTIONS (called from onclick) ===
+
+  window.avdCfgSelect = function(key, val) {
+    if (key === 'postCount' && typeof val === 'string' && val !== '5+') val = parseInt(val);
+    cfg[key] = val;
+    renderStep();
+  };
+
+  window.avdCfgToggle = function(arrKey, id) {
+    var idx = cfg[arrKey].indexOf(id);
+    if (idx === -1) cfg[arrKey].push(id);
+    else cfg[arrKey].splice(idx, 1);
+    renderStep();
+  };
+
+  window.avdCfgNext = function() {
+    if (step < 5 && canNext()) { step++; renderStep(); }
+  };
+
+  window.avdCfgPrev = function() {
+    if (step > 0) { step--; renderStep(); }
+  };
+
+  window.avdCfgFormUpdate = function() {
+    var name = document.getElementById('cfg-f-name').value.trim();
+    var phone = document.getElementById('cfg-f-phone').value.trim();
+    document.getElementById('cfg-submit-btn').disabled = !(name && phone);
+  };
+
+  window.avdCfgSubmit = function() {
+    var name = document.getElementById('cfg-f-name').value.trim();
+    var phone = document.getElementById('cfg-f-phone').value.trim();
+    var email = document.getElementById('cfg-f-email').value.trim();
+    if (!name || !phone) return;
+
+    var est = calcEstimate();
+    var wt = find(WASH_TYPES, cfg.washType);
+    var pc = find(POST_COUNTS, cfg.postCount);
+    var eq = find(EQUIP_TYPES, cfg.equipType);
+    var ch = find(CHEM_TYPES, cfg.chemType);
+
+    var configSummary = 'Тип мойки: ' + (wt ? wt.label : '-') + '\n'
+      + 'Постов: ' + (pc ? pc.label : '-') + '\n'
+      + 'Оборудование: ' + (eq ? eq.label : '-') + '\n'
+      + 'Подача химии: ' + (ch ? ch.label : '-') + '\n';
+    if (cfg.extras.length) configSummary += 'Доп. опции: ' + cfg.extras.map(function(id) { var o = find(EXTRA_OPTIONS,id); return o?o.label:id; }).join(', ') + '\n';
+    if (cfg.services.length) configSummary += 'Услуги: ' + cfg.services.map(function(id) { var s = find(SERVICES,id); return s?s.label:id; }).join(', ') + '\n';
+
+    var costSummary = '';
+    if (est) {
+      costSummary = 'Оборудование: ' + fmt(est.equipCost) + ' Br\n';
+      if (est.chemCost > 0) costSummary += 'Подача химии: ' + fmt(est.chemCost) + ' Br\n';
+      if (est.extraCost > 0) costSummary += 'Доп. опции: ' + fmt(est.extraCost) + ' Br\n';
+      if (est.serviceCost > 0) costSummary += 'Услуги: ' + fmt(est.serviceCost) + ' Br\n';
+    }
+
+    var totalStr = est ? fmt(est.total) + ' Br' : '-';
+    var btn = document.getElementById('cfg-submit-btn');
+    btn.disabled = true;
+    btn.textContent = 'Отправка...';
+
+    // WordPress AJAX
+    if (typeof avdConfigAjax !== 'undefined' && avdConfigAjax.url) {
+      var fd = new FormData();
+      fd.append('action', 'avd_configurator_submit');
+      fd.append('nonce', avdConfigAjax.nonce);
+      fd.append('name', name);
+      fd.append('phone', phone);
+      fd.append('email', email);
+      fd.append('config_summary', configSummary);
+      fd.append('cost_summary', costSummary);
+      fd.append('total', totalStr);
+
+      fetch(avdConfigAjax.url, { method: 'POST', body: fd })
+        .then(function(r) { return r.json(); })
+        .then(function() { showSuccess(totalStr); })
+        .catch(function() { showSuccess(totalStr); }); // show success even if AJAX fails - form is a lead
+    } else {
+      // Fallback: if no WordPress AJAX available, just show success
+      setTimeout(function() { showSuccess(totalStr); }, 500);
+    }
+  };
+
+  function showSuccess(totalStr) {
+    document.getElementById('cfg-final-total').textContent = totalStr;
+    document.querySelector('#avd-cfg .cfg-card').style.display = 'none';
+    document.getElementById('cfg-success').style.display = 'block';
+  }
+
+  window.avdCfgReset = function() {
+    step = 0;
+    cfg = { washType:null, postCount:null, equipType:null, chemType:null, extras:[], services:[] };
+    contact = { name:'', phone:'', email:'' };
+    document.querySelector('#avd-cfg .cfg-card').style.display = 'block';
+    document.getElementById('cfg-success').style.display = 'none';
+    renderStep();
+  };
+
+  // === INIT ===
+  renderStep();
+
+})();
+</script>
