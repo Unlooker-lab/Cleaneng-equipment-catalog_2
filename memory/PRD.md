@@ -58,6 +58,12 @@
 - Живой чат с менеджером
 - Отзывы и кейсы клиентов
 
+## Файлы WordPress-адаптации
+- `/app/docs/QUICK-START.md` — Быстрая инструкция (начните с него)
+- `/app/docs/configurator-embed.html` — Полный HTML/CSS/JS код для Elementor Custom HTML
+- `/app/docs/wordpress-functions-snippet.php` — PHP-код для functions.php
+- `/app/docs/configurator-wordpress-guide.md` — Подробная документация
+
 ## Следующие шаги
 1. Адаптация прототипа для WordPress/Elementor
 2. Добавление реальных изображений товаров
